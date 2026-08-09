@@ -1,43 +1,46 @@
 pipeline {
     agent any
-
+ 
     stages {
-
-        stage('Checkout') {
+ 
+        stage('Checkout Source Code') {
             steps {
-                echo 'Checking out source code...'
+                checkout scm
             }
         }
-
+ 
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                bat 'echo Build completed successfully'
+                echo "Building the application..."
             }
         }
-
+ 
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                bat 'echo All tests passed successfully'
+                echo "Running tests..."
             }
         }
-
+ 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
-                bat 'echo Deployment completed successfully'
+                echo "Deploying application..."
             }
         }
     }
-
+ 
     post {
         success {
-            echo 'Jenkins Pipeline completed successfully!'
+            echo "Pipeline completed successfully."
         }
-
+ 
         failure {
-            echo 'Jenkins Pipeline failed!'
+            echo "Pipeline failed."
+        }
+ 
+        always {
+            echo "Pipeline execution finished."
         }
     }
 }
+
+    
